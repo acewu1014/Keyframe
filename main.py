@@ -6,7 +6,7 @@ from scenedetect import detect, ContentDetector
 from video_reader import VideoReader
 from time_change import milisec
 
-download_img = True
+download_img = False
 #read meatdate
 entries = {}
 translate = {}
@@ -39,6 +39,7 @@ for video in  video_list:
     #access the metadata to get the tag and artists information
     keyword = entries[name]['keywords']
     artists = entries[name]['artists']
+    genres = ["歷史劇", "偵探/調查", "懸疑/推理", "人性戲劇", "科幻/奇幻", "動作", "愛情故事", "家庭/動畫", "喜劇", "戰爭", "恐怖/驚悚", "經典/紀錄片", "音樂劇/音樂", "黑幫/流氓", "深夜戲劇"]
 
     #Translate keywords
     for i in range(len(keyword)):
@@ -57,6 +58,7 @@ for video in  video_list:
         shot['boundary_frame'] = (scene[0].get_frames(), scene[1].get_frames())
         shot['keywords'] = keyword
         shot['artists'] = artists
+        shot['genres'] = genres
         shots.append(shot)
 
         if download_img:
